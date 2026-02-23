@@ -6,6 +6,7 @@ const BorrowingLogSchema = new Schema({
   person_id: { type: Schema.Types.ObjectId, required: true },
   borrow_date: { type: Date, required: true },
   real_return_date: { type: Date, default: null },
+  action: { type: String, required: true, enum: ['borrow', 'return'] }, // Added action field
   action_at: { type: Date, default: Date.now }
 });
 
