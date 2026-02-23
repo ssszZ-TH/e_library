@@ -2,7 +2,7 @@ import BorrowingModel from '../models/borrowings.model';
 import BookModel from '../models/books.model';
 import BorrowingLogModel from '../models/borrowing_logs.model';
 
-export interface IBorrowingRead {
+export interface IBorrowing {
   _id: string;
   book_id: string;
   person_id: string;
@@ -11,8 +11,8 @@ export interface IBorrowingRead {
 }
 
 export async function createBorrowing(
-  data: Omit<IBorrowingRead, '_id' | 'borrow_date'>
-): Promise<IBorrowingRead> {
+  data: Omit<IBorrowing, '_id' | 'borrow_date'>
+): Promise<IBorrowing> {
   const book = await BookModel.findByIdAndUpdate(
     data.book_id,
     { $inc: { available: -1 } },
@@ -21,7 +21,7 @@ export async function createBorrowing(
   if (!book || book.available < 0) throw new Error('Book not available');
 
   const borrowing = await BorrowingModel.create(data);
-  const result = borrowing.toObject({ flattenObjectIds: true }) as IBorrowingRead;
+  const result = borrowing.toObject({ flattenObjectIds: true }) as IBorrowing;
 
   await BorrowingLogModel.create({
     book_id: result.book_id,
@@ -33,11 +33,11 @@ export async function createBorrowing(
   return result;
 }
 
-export async function deleteBorrowing(id: string): Promise<IBorrowingRead | null> {
+export async function deleteBorrowing(id: string): Promise<IBorrowing | null> {
   const borrowing = await BorrowingModel.findByIdAndDelete(id);
   if (!borrowing) return null;
 
-  const result = borrowing.toObject({ flattenObjectIds: true }) as IBorrowingRead;
+  const result = borrowing.toObject({ flattenObjectIds: true }) as IBorrowing;
 
   await BookModel.findByIdAndUpdate(result.book_id, { $inc: { available: 1 } });
 
@@ -50,7 +50,7 @@ export async function deleteBorrowing(id: string): Promise<IBorrowingRead | null
   return result;
 }
 
-export async function getActiveBorrowings(): Promise<IBorrowingRead[]> {
+export async function getActiveBorrowings(): Promise<IBorrowing[]> {
   return await BorrowingModel.find().populate('book_id').populate('person_id');
 }
 
