@@ -2,8 +2,8 @@
   import { enhance } from '$app/forms';
   import ErrorBox from '$lib/components/error_box.svelte';
   import ViewToggle from '$lib/components/switch/view_toddle.svelte';
-  import DataFlex from '$lib/components/show_data/data_flex.svelte';
-  import DataTable from '$lib/components/show_data/data_table.svelte';
+  import DataFlex from '$lib/components/show_data/for_book/data_flex.svelte';
+  import DataTable from '$lib/components/show_data/for_book/data_table.svelte';
 
   let { data, form } = $props();
   let isLoading = $state(false);
@@ -31,15 +31,18 @@
         class="flex items-center gap-2 rounded-xl border border-[#D4C3A3] bg-[#F5EFE6] p-1.5 shadow-sm"
       >
         <div class="flex flex-col px-4 py-1 text-center">
-          <span class="text-[10px] font-bold tracking-widest text-[#8D7B68] uppercase">Total</span>
-          <span class="text-lg leading-none font-black">{totalCount}</span>
-        </div>
-        <div class="h-8 w-[1px] bg-[#D4C3A3]"></div>
-        <div class="flex flex-col px-4 py-1 text-center">
           <span class="text-[10px] font-bold tracking-widest text-[#8D7B68] uppercase"
-            >In Stock</span
+            >Available</span
           >
           <span class="text-lg leading-none font-black text-green-700">{availableCount}</span>
+        </div>
+
+        <!-- seperator -->
+        <div class="h-8 w-[1px] bg-[#D4C3A3]"></div>
+
+        <div class="flex flex-col px-4 py-1 text-center">
+          <span class="text-[10px] font-bold tracking-widest text-[#8D7B68] uppercase">Total</span>
+          <span class="text-lg leading-none font-black">{totalCount}</span>
         </div>
       </div>
 

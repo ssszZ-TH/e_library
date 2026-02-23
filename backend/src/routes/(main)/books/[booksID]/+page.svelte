@@ -2,7 +2,6 @@
   import { enhance } from '$app/forms';
   import ErrorBox from '$lib/components/error_box.svelte';
   let { data, form } = $props();
-  let book = data.book;
   let showFormError = $state(true);
 
   $effect(() => {
@@ -28,7 +27,7 @@
         <input
           id="title"
           name="title"
-          value={book.title}
+          value={data.book.title}
           required
           class="rounded-lg border-[#D4C3A3] p-2 focus:ring-2 focus:ring-[#8D7B68] focus:outline-none"
         />
@@ -39,7 +38,7 @@
         <input
           id="writer"
           name="writer"
-          value={book.writer}
+          value={data.book.writer}
           required
           class="rounded-lg border-[#D4C3A3] p-2 focus:ring-2 focus:ring-[#8D7B68] focus:outline-none"
         />
@@ -52,7 +51,7 @@
             id="amount"
             type="number"
             name="amount"
-            value={book.amount}
+            value={data.book.amount}
             required
             class="rounded-lg border-[#D4C3A3] p-2 focus:ring-2 focus:ring-[#8D7B68] focus:outline-none"
           />
@@ -63,7 +62,7 @@
             id="available"
             type="number"
             name="available"
-            value={book.available}
+            value={data.book.available}
             required
             class="rounded-lg border-[#D4C3A3] p-2 focus:ring-2 focus:ring-[#8D7B68] focus:outline-none"
           />
@@ -77,7 +76,7 @@
           name="description"
           rows="4"
           class="rounded-lg border-[#D4C3A3] p-2 focus:ring-2 focus:ring-[#8D7B68] focus:outline-none"
-          >{book.description}</textarea
+          >{data.book.description}</textarea
         >
       </div>
 

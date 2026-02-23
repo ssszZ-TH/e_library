@@ -6,7 +6,10 @@
     { name: 'Books', href: '/books' },
     { name: 'Borrow', href: '/borrow-books' },
     { name: 'Return', href: '/return-books' },
-    { name: 'Members', href: '/persons' }
+    { name: 'Persons', href: '/persons' },
+    { name: 'Books Log', href: '/books-log' },
+    { name: 'Persons Log', href: '/persons-log' },
+    { name: 'Borrow Log', href: '/borrows-log' }
   ];
 
   // Auto-close mobile menu on route change
