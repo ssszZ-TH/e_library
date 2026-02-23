@@ -14,3 +14,7 @@ cd backend
 bun install
 bun run dev
 ```
+
+# about
+
+เป็นงานทดสอบฝีมือของบริษัท Hi-q ROZA ซอสมะเขือเทศเเสนอร่อย งานผ่านไปได้ด้วยดี ถูกใจ senior dev เพราะมีการเก็บ log ทุกอย่าง
